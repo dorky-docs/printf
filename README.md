@@ -1,0 +1,1 @@
+This is a group project and meant to be a collaboration between myself, Dorcas Fordjour and Victoria Ajibade in the ALX Software Engineering Program Cohort 16. This is the first of hopefully many collaborative programming such as these.
