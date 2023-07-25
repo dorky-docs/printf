@@ -6,7 +6,7 @@
  */
 int is_printable(char k)
 {
-	if (k >= 32 && k <= 127)
+	if (k >= 32 && k < 127)
 		return (1);
 	else
 		return (0);
