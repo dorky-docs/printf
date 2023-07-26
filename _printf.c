@@ -1,7 +1,5 @@
 #include "main.h"
 #include <stdarg.h>
-void print_buffer(char buffer[], int *buff_ind);
-
 /**
  * _printf - A function that prints according to a format
  * @format: format to loop through
@@ -16,7 +14,6 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-
 	va_start(my_args, format);
 
 	for (j = 0; format && format[j] != '\0'; j++)
@@ -26,7 +23,6 @@ int _printf(const char *format, ...)
 			buffer[buff_ind++] = format[j];
 			if (buff_ind == BUFF_SIZE)
 				print_buffer(buffer, &buff_ind);
-			 /* write(1, &format[i], 1);*/
 			printed_chars++;
 		}
 		else
@@ -44,18 +40,14 @@ int _printf(const char *format, ...)
 			printed_chars += printed;
 		}
 	}
-
 	print_buffer(buffer, &buff_ind);
-
 	va_end(my_args);
-
 	return (printed_chars);
 }
-
 /**
  * print_buffer - Prints the contents of the existing  buffer
  * @buffer: an array of characters
- * @buff_ind:to keep track of characters printed 
+ * @buff_ind:to keep track of characters printed
  */
 void print_buffer(char buffer[], int *buff_ind)
 {

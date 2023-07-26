@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * print_char - Prints a char
+ * print_char - Prints a character
  * print_string - Prints a string
  * print_percent - Prints a percent sign
- * print_int - Print int
+ * print_int - Print integer
  * print_binary - Prints an unsigned number
  * @types: List of arguments
  * @buffer: Buffer array to handle print
@@ -105,16 +105,7 @@ int print_int(va_list types, char buffer[],
 }
 
 /**PRINT BINARY**/
-/**
- * print_binary - Prints an unsigned number
- * @types: list of arguments
- * @buffer: the buffer array to handle print
- * @flags:  to calculate active flags
- * @width: to get width
- * @precision: Specification for precision
- * @size: Specifier for size
- * Return: Number of characters printed
- */
+
 int print_binary(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
