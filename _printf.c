@@ -1,53 +1,61 @@
 #include "main.h"
-#include <stdarg.h>
+
+void print_buffer(char buffer[], int *buff_ind);
+
 /**
- * _printf - A function that prints according to a format
- * @format: format to loop through
- * Return: Characters printed
+ * _printf - Custom printf function to print according to a format
+ * @format: The format
+ * Return: Charcaters printed
  */
 int _printf(const char *format, ...)
 {
-	int j, printed = 0, printed_chars = 0;
+	int i, printed = 0, printed_chars = 0;
 	int flags, width, precision, size, buff_ind = 0;
-	va_list my_args;
+	va_list list;
 	char buffer[BUFF_SIZE];
 
 	if (format == NULL)
 		return (-1);
-	va_start(my_args, format);
 
-	for (j = 0; format && format[j] != '\0'; j++)
+	va_start(list, format);
+
+	for (i = 0; format && format[i] != '\0'; i++)
 	{
-		if (format[j] != '%')
+		if (format[i] != '%')
 		{
-			buffer[buff_ind++] = format[j];
+			buffer[buff_ind++] = format[i];
 			if (buff_ind == BUFF_SIZE)
 				print_buffer(buffer, &buff_ind);
+
 			printed_chars++;
 		}
 		else
 		{
 			print_buffer(buffer, &buff_ind);
-			flags = get_flags(format, &j);
-			width = get_width(format, &j, my_args);
-			precision = get_precision(format, &j, my_args);
-			size = get_size(format, &j);
-			++j;
-			printed = handle_print(format, &j, my_args, buffer,
+			flags = get_flags(format, &i);
+			width = get_width(format, &i, list);
+			precision = get_precision(format, &i, list);
+			size = get_size(format, &i);
+			++i;
+			printed = handle_print(format, &i, list, buffer,
 				flags, width, precision, size);
 			if (printed == -1)
 				return (-1);
 			printed_chars += printed;
 		}
 	}
+
 	print_buffer(buffer, &buff_ind);
-	va_end(my_args);
+
+	va_end(list);
+
 	return (printed_chars);
 }
+
 /**
- * print_buffer - Prints the contents of the existing  buffer
- * @buffer: an array of characters
- * @buff_ind:to keep track of characters printed
+ * print_buffer - A function that prints the contents of the existing buffer
+ * @buffer: Array of characters
+ * @buff_ind: This represents the length, next characters are added here
  */
 void print_buffer(char buffer[], int *buff_ind)
 {
