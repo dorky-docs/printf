@@ -3,13 +3,14 @@
 void print_buffer(char buffer[], int *buff_ind);
 
 /**
- * _printf - Custom printf function to print according to a format
- * @format: The format
- * Return: Charcaters printed
+ * _printf - the custom printf function 
+ * that prints according to a format
+ * @format: format to aid the print
+ * Return: Printed characters
  */
 int _printf(const char *format, ...)
 {
-	int i, printed = 0, printed_chars = 0;
+	int i, count = 0, printed_chars = 0;
 	int flags, width, precision, size, buff_ind = 0;
 	va_list list;
 	char buffer[BUFF_SIZE];
@@ -39,7 +40,7 @@ int _printf(const char *format, ...)
 			++i;
 			printed = handle_print(format, &i, list, buffer,
 				flags, width, precision, size);
-			if (printed == -1)
+			if (count == -1)
 				return (-1);
 			printed_chars += printed;
 		}
@@ -53,9 +54,9 @@ int _printf(const char *format, ...)
 }
 
 /**
- * print_buffer - A function that prints the contents of the existing buffer
- * @buffer: Array of characters
- * @buff_ind: This represents the length, next characters are added here
+ * print_buffer - This function prints the contents of an existing buffer
+ * @buffer: array of characters
+ * @buff_ind: Index to add next character, this represents the length
  */
 void print_buffer(char buffer[], int *buff_ind)
 {
